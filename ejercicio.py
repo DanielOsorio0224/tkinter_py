@@ -9,16 +9,24 @@ numero1 = StringVar()
 numero2 = StringVar()
 resultado = StringVar()
 
-Label(ventana, text="Primer numero").pack()
-Entry(ventana, textvariable=numero1).pack()
+marco = Frame(ventana, width=250, height=250)
+marco.config(
+    bd=5,
+    relief=SOLID
+)
+marco.pack(side=TOP, anchor=CENTER)
+marco.pack_propagate(False)
 
-Label(ventana, text="Segundo numero").pack()
-Entry(ventana, textvariable=numero2).pack()
+Label(marco, text="Primer numero").pack()
+Entry(marco, textvariable=numero1, justify="center").pack()
 
-Button(ventana, text="Sumar").pack()
-Button(ventana, text="Restar").pack()
-Button(ventana, text="multiplicar").pack()
-Button(ventana, text="Dividir").pack()
+Label(marco, text="Segundo numero").pack()
+Entry(marco, textvariable=numero2, justify="center").pack()
+
+Button(marco, text="Sumar").pack()
+Button(marco, text="Restar").pack()
+Button(marco, text="multiplicar").pack()
+Button(marco, text="Dividir").pack()
 
 
 ventana.mainloop()
