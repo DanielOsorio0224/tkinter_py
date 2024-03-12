@@ -9,20 +9,30 @@ numero1 = StringVar()
 numero2 = StringVar()
 resultado = StringVar()
 
-def sumar():
-    resultado.set(float(numero1.get()) + float(numero2.get()))
+def convertirFloat(numero):
+    try:
+        result = float(numero)
+    except:
+        result = 0
+        messagebox.showerror("Error","Introduce bien los numeros")    
+
+    return result
+
+def sumar():    
+    resultado.set(convertirFloat(numero1.get()) + convertirFloat(numero2.get()))
     mostrarResultado()
+       
 
 def restar():
-    resultado.set(float(numero1.get()) - float(numero2.get()))
+    resultado.set(convertirFloat(numero1.get()) - convertirFloat(numero2.get()))
     mostrarResultado()
 
 def multiplicar():
-    resultado.set(float(numero1.get()) * float(numero2.get()))
+    resultado.set(convertirFloat(numero1.get()) * convertirFloat(numero2.get()))
     mostrarResultado()
 
 def dividir():
-    resultado.set(float(numero1.get()) / float(numero2.get()))
+    resultado.set(convertirFloat(numero1.get()) / convertirFloat(numero2.get()))
     mostrarResultado()
 
 def mostrarResultado():
