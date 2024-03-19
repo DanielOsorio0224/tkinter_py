@@ -19,6 +19,7 @@ def home():
     addLabel.grid_remove()
     infoLabel.grid_remove()
     dataLabel.grid_remove()
+    add_frame.grid_remove()
 
     return True
 
@@ -34,6 +35,7 @@ def add():
     addLabel.grid(row=0, column=0, columnspan=4)
 
     #campos formulario
+    add_frame.grid(row=1)
     add_name_label.grid(row=1,column=0)
     add_name_entry.grid(row=1, column=1)
     add_price_label.grid(row=2,column=0)
@@ -61,9 +63,23 @@ def info():
 
     addLabel.grid_remove()
     homeLabel.grid_remove()
+    add_frame.grid_remove()
     return True
 
+def addProduct():
+    products.append([
+        nameData.get(),
+        priceData.get(),
+        add_descripcion_entry.get("1.0", "end-1c")
+    ])
+
+    nameData.set("")
+    priceData.set("")
+    add_descripcion_entry.delete("1.0", END)
+
+    home()    
 #variables importante
+products = []
 nameData = StringVar()
 priceData = StringVar()
 
@@ -71,16 +87,17 @@ homeLabel = Label(ventana, text="Inicio")
 addLabel = Label(ventana, text="Añadir producto")
 
 #Campos formulario
-add_name_label = Label(ventana, text="Nombre: ")
-add_name_entry = Entry(ventana, textvariable=nameData)
+add_frame = Frame(ventana)
+add_name_label = Label(add_frame, text="Nombre: ")
+add_name_entry = Entry(add_frame, textvariable=nameData)
 
-add_price_label = Label(ventana, text="Precio: ")
-add_price_entry = Entry(ventana, textvariable=priceData)
+add_price_label = Label(add_frame, text="Precio: ")
+add_price_entry = Entry(add_frame, textvariable=priceData)
 
-add_descripcion_label = Label(ventana, text="Descripcion: ")
-add_descripcion_entry = Text(ventana)
+add_descripcion_label = Label(add_frame, text="Descripcion: ")
+add_descripcion_entry = Text(add_frame)
 
-boton = Button(ventana, text="Guardar")
+boton = Button(add_frame, text="Guardar", command=addProduct)
 
 infoLabel = Label(ventana, text="Informacion producto")
 dataLabel = Label(ventana,text="Creado por daniel")
