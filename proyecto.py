@@ -16,6 +16,16 @@ def home():
     )
     homeLabel.grid(row=0, column=0)
 
+    products_box.grid(row=1)
+
+    for product in products:
+        if len(product) == 3:
+            product.append("added")
+            Label(products_box, text=product[0]).grid()
+            Label(products_box, text=product[1]).grid()
+            Label(products_box, text=product[2]).grid()
+            Label(products_box, text="-------").grid()
+
     addLabel.grid_remove()
     infoLabel.grid_remove()
     dataLabel.grid_remove()
@@ -48,6 +58,7 @@ def add():
     homeLabel.grid_remove()
     infoLabel.grid_remove()
     dataLabel.grid_remove()
+    products_box.grid_remove()
     return True
 
 def info():
@@ -64,6 +75,7 @@ def info():
     addLabel.grid_remove()
     homeLabel.grid_remove()
     add_frame.grid_remove()
+    products_box.grid_remove()
     return True
 
 def addProduct():
@@ -84,6 +96,7 @@ nameData = StringVar()
 priceData = StringVar()
 
 homeLabel = Label(ventana, text="Inicio")
+products_box = Frame(ventana, width=250)
 addLabel = Label(ventana, text="Añadir producto")
 
 #Campos formulario
